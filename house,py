@@ -1,0 +1,77 @@
+class Human:
+    def __init__(self, name, age):
+        if not isinstance(name, str):
+            print("Error!")
+            self.name = "Unknown"
+        else:
+            self.name = name
+
+        if not isinstance(age, int):
+            print("Error!")
+            self.age = 0
+        else:
+            self.age = age
+
+    def Say(self):
+        print(f"My name is {self.name} and I'm {self.age} yo.")
+
+class Car:
+    def __init__(self, brand):
+        if not isinstance(brand, str):
+            print("Error!")
+            self.brand = "Unknown"
+        else:
+            self.brand = brand
+        self.passengers = []
+
+    def add_passenger(self, H):
+        if not isinstance(H, Human):
+            print("Can't add!")
+        else:
+            self.passengers.append(H)
+
+    def print_passengers(self):
+        print("All passengers in car:")
+  
+        for i in self.passengers:
+            i.Say()
+
+    def remove_pass(self, H):
+        if not isinstance(H, Human):
+            print("Can't remove")
+        else:
+            self.passengers.remove(H)
+
+class House:
+    def __init__(self, address):
+        if not isinstance(address, str):
+            print("Error!")
+            self.address = "Unknown"
+        else:
+            self.address = address
+        
+    def set_owner(self, human):
+        if not isinstance(human, Human):
+            print("Can't set owner!")
+        else:
+            self.owner = human
+            print(f"{human.name} now owns house at {self.address}")
+
+    def info(self):
+        if self.owner:
+            print(f"House at {self.address} owned by {self.owner.name}")
+        else:
+            print(f"House at {self.address} has no owner")
+
+Bob = Human("Bob", 18)
+Lilya = Human("Lilya", 20)
+my_house = House("Moscow, Lenina 1")
+my_house.set_owner(Bob)
+my_house.info()
+car = Car("Buhanka")
+car.add_passenger(Bob)
+car.print_passengers()
+car.add_passenger(Lilya)
+car.print_passengers()
+car.remove_pass(Bob)
+car.print_passengers()
